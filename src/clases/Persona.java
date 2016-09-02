@@ -16,12 +16,22 @@ public class Persona {
   private long identificacion;
   private String primer_nombre;
   private String primer_apellido;
+  private String Genero;
     
     
-    public Persona (long identificacion, String primer_nombre, String primer_apellido){
+    public Persona (long identificacion, String primer_nombre, String primer_apellido,String Genero){
         this.identificacion = identificacion;
         this.primer_nombre = primer_nombre;
         this.primer_apellido = primer_apellido;
+        this.Genero = Genero;
+    }
+
+    public String getGenero() {
+        return Genero;
+    }
+
+    public void setGenero(String Genero) {
+        this.Genero = Genero;
     }
 
     public long getIdentificacion() {
