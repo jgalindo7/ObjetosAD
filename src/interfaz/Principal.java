@@ -211,7 +211,6 @@ public class Principal extends javax.swing.JFrame {
            cmbGenero.setSelectedIndex(0);
        }
        
-       
     }//GEN-LAST:event_cmdLimpiarActionPerformed
 
     private void cmdListarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdListarMActionPerformed
