@@ -6,6 +6,8 @@
 
 package interfaz;
 import clases.Persona;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author jgalindo7
@@ -15,8 +17,9 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    Persona v[] = new Persona[5];
-    int cont= 0;
+    
+    ArrayList<Persona> v = new ArrayList();
+    
     public Principal() {
         initComponents();
     }
@@ -84,9 +87,19 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.add(cmdGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         cmdMostrar.setText("Mostrar");
+        cmdMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMostrarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         cmdLimpiar.setText("Limpiar");
+        cmdLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLimpiarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 120, 150));
@@ -133,10 +146,52 @@ public class Principal extends javax.swing.JFrame {
         primer_apellido = txtPrimerApellido.getText();
         
         p = new Persona(identificacion,primer_nombre,primer_apellido);
-        v[cont]=p;
-        cont ++;
+        v.add(p);
+        
+        JOptionPane.showMessageDialog(this,"persona agregada Exitosamente");
+        txtIdentificacion.setText("");
+        txtPrimerNombre.setText("");
+        txtPrimerApellido.setText("");
+        txtIdentificacion.requestFocusInWindow();
+        
         
     }//GEN-LAST:event_cmdGuardarActionPerformed
+
+    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
+        String aux;
+        
+        if(v.isEmpty()){
+            txtResultado.setText("mo hay personas que mostrar");
+       
+        }else{
+            
+        }
+        
+        for (int i = 0; i < v.size(); i++) {
+            aux ="Persona No. "+(i+1)+"\n"
+                 +"Identificacion: "+v.get(i).getIdentificacion()+"\n"
+                 + "Primer Nombre: "+v.get(i).getPrimer_nombre()+"\n"
+                 + "Primer Apellido: "+v.get(i).getPrimer_apellido()+"\n\n";
+                    
+            txtResultado.append(aux);
+        }
+        txtIdentificacion.requestFocusInWindow();
+    }//GEN-LAST:event_cmdMostrarActionPerformed
+
+    private void cmdLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLimpiarActionPerformed
+       int op;
+       op = JOptionPane.showConfirmDialog(this,"¿Seguro que desea eliminar las personas?","Pregunta",JOptionPane.YES_NO_OPTION);
+       if (op == JOptionPane.YES_NO_OPTION){
+           v.clear();
+           txtResultado.setText("");
+           txtIdentificacion.setText("");
+           txtPrimerNombre.setText("");
+           txtPrimerApellido.setText("");
+           txtIdentificacion.requestFocusInWindow();
+       }
+       
+       
+    }//GEN-LAST:event_cmdLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
